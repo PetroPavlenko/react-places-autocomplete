@@ -68,13 +68,13 @@ class PlacesAutocomplete extends React.Component {
     this.setState({ autocompleteItems: [] })
   }
 
-  selectAddress(address) {
+  selectAddress(address, p) {
     this.clearAutocomplete()
-    this._handleSelect(address)
+    this._handleSelect(address, p)
   }
 
-  _handleSelect(address) {
-    this.props.onSelect ? this.props.onSelect(address) : this.props.onChange(address)
+  _handleSelect(address, p) {
+    this.props.onSelect ? this.props.onSelect(address, p) : this.props.onChange(address)
   }
 
   _getActiveItem() {
@@ -197,7 +197,7 @@ class PlacesAutocomplete extends React.Component {
           <div
             key={p.placeId}
             onMouseOver={() => this._setActiveItemAtIndex(p.index)}
-            onClick={() => this.selectAddress(p.suggestion)}
+            onClick={() => this.selectAddress(p.suggestion, p)}
             style={{ ...defaultStyles.autocompleteItem, ...styles.autocompleteItem, ...this.autocompleteItemStyle(p.active) }}>
             {this.props.autocompleteItem({ suggestion: p.suggestion })}
           </div>
